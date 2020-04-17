@@ -27,7 +27,7 @@ namespace ElevenNote.Data
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
@@ -44,24 +44,24 @@ namespace ElevenNote.Data
             modelBuilder
                 .Configurations
                 .Add(new IdentityUserLoginConfiguration())
-                .Add(new IdentityUserLoginConfiguration());
-        }
-
-        public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
-        {
-            public IdentityUserLoginConfiguration()
-            {
-                HasKey(iul => iul.UserId);
-            }
-        }
-
-        public class IdentityUserRoleConfiguration: EntityTypeConfiguration<IdentityUserLogin>
-        {
-            public IdentityUserRoleConfiguration()
-            {
-                HasKey(iur => iur.UserId);
-            }
+                .Add(new IdentityUserRoleConfiguration());
         }
     }
 
+    public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
+    {
+        public IdentityUserLoginConfiguration()
+        {
+            HasKey(iul => iul.UserId);
+        }
+    }
+
+    public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
+    {
+        public IdentityUserRoleConfiguration()
+        {
+            HasKey(iur => iur.UserId);
+        }
+    }
 }
+

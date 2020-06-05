@@ -25,6 +25,7 @@ namespace ElevenNote.Services
                     Title = model.Title,
                     Content = model.Content,
                     CreatedUtc = DateTimeOffset.Now
+                    //CategoryID=model.CategoryID,
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -48,6 +49,8 @@ namespace ElevenNote.Services
                                     NoteId = e.NoteId,
                                     Title = e.Title,
                                     CreatedUtc = e.CreatedUtc
+                                    //CategoryName=e.Category.CategoryName 
+                                    //above referencing the Category from note class for challenge 
                                 }
                         );
 
@@ -66,7 +69,7 @@ namespace ElevenNote.Services
                 return
                     new NoteDetail
                     {
-                        NoteId = entity.NoteId,
+                        NoteId = entity.NoteId,//entity is something that goes into the datalayer
                         Title = entity.Title,
                         Content = entity.Content,
                         CreatedUtc = entity.CreatedUtc,
